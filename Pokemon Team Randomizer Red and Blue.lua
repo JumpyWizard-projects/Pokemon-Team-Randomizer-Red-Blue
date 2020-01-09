@@ -854,23 +854,23 @@ while true do
 			end
 			CurHP[1] = (memory.readbyte(0xD16D)+memory.readbyte(0xD16C)*255)/(memory.readbyte(0xD18E)+memory.readbyte(0xD18D)*255)
 			memory.writebyte(0xD164,Pokemon[math.random(#Pokemon)])
-			HP[1] = ((HPBase[memory.readbyte(0xD164)] + HPIV[1])* 2 + (math.sqrt(memory.readbyte(0xD17D) + memory.readbyte(0xD17C)* 255))/ 4)*memory.readbyte(0xD18C)/ 100)+ memory.readbyte(0xD18C)+ 10
-			A[1] = ((ABase[memory.readbyte(0xD164)] + AIV[1])* 2 + (math.sqrt(memory.readbyte(0xD17F) + memory.readbyte(0xD17E)* 255))/ 4)*memory.readbyte(0xD18C)/ 100)+ 5
-			D[1] = ((DBase[memory.readbyte(0xD164)] + DIV[1])* 2 + (math.sqrt(memory.readbyte(0xD181) + memory.readbyte(0xD180)* 255))/ 4)*memory.readbyte(0xD18C)/ 100)+ 5
-			SPEED[1] = ((SpeedBase[memory.readbyte(0xD164)] + SPEEDIV[1])* 2 + (math.sqrt(memory.readbyte(0xD194) + memory.readbyte(0xD193)* 255))/ 4)*memory.readbyte(0xD18C)/ 100)+ 5
-			SPECIAL[1] = ((SpecialBase[memory.readbyte(0xD164)] + SPECIALIV[1])* 2 + (math.sqrt(memory.readbyte(0xD196) + memory.readbyte(0xD195)* 255))/ 4)*memory.readbyte(0xD18C)/ 100)+ 5
+			HP[1] = ((HPBase[memory.readbyte(0xD164)] + HPIV[1])* 2 + (math.sqrt(memory.readbyte(0xD17D) + memory.readbyte(0xD17C)* 255))/ 4)*memory.readbyte(0xD18C)/ 100+ memory.readbyte(0xD18C)+ 10
+			A[1] = ((ABase[memory.readbyte(0xD164)] + AIV[1])* 2 + (math.sqrt(memory.readbyte(0xD17F) + memory.readbyte(0xD17E)* 255))/ 4)*memory.readbyte(0xD18C)/ 100+ 5
+			D[1] = ((DBase[memory.readbyte(0xD164)] + DIV[1])* 2 + (math.sqrt(memory.readbyte(0xD181) + memory.readbyte(0xD180)* 255))/ 4)*memory.readbyte(0xD18C)/ 100+ 5
+			SPEED[1] = ((SpeedBase[memory.readbyte(0xD164)] + SPEEDIV[1])* 2 + (math.sqrt(memory.readbyte(0xD194) + memory.readbyte(0xD193)* 255))/ 4)*memory.readbyte(0xD18C)/ 100+ 5
+			SPECIAL[1] = ((SpecialBase[memory.readbyte(0xD164)] + SPECIALIV[1])* 2 + (math.sqrt(memory.readbyte(0xD196) + memory.readbyte(0xD195)* 255))/ 4)*memory.readbyte(0xD18C)/ 100+ 5
 			if HP[1] > 255 then
 				memory.writebyte(0xD18D,math.floor(HP[1]/255))
 				memory.writebyte(0xD18E,HP[i] - memory.readbyte(0xD18D)*255)
 				memory.writebyte(0xD16C,math.floor(HP[1]*CurHP[1]/255))
 				memory.writebyte(0xD16D,HP[1]*CurHP[1] - memory.readbyte(0xD16C)*255)
-				if memory.readbyte(0xD16C)+memory.readbyte(0xD16D) == 0 and CurHP > 0
+				if memory.readbyte(0xD16C)+memory.readbyte(0xD16D) == 0 and CurHP > 0 then
 					memory.writebyte(0xD16D,1)
 				end
 			else
 				memory.writebyte(0xD18E,HP[1])
-				memory.writebyte(0xD16D,HP[1]*CurHP)
-				if memory.readbyte(0xD16D) == 0 and CurHP[1] > 0
+				memory.writebyte(0xD16D,HP[1]*CurHP[1])
+				if memory.readbyte(0xD16D) == 0 and CurHP[1] > 0 then
 					memory.writebyte(0xD16D,1)
 				end
 			end
@@ -896,7 +896,7 @@ while true do
 				memory.writebyte(0xD195,math.floor(SPECIAL[1]/255))
 				memory.writebyte(0xD196,SPECIAL[1] - memory.readbyte(0xD195)*255)
 			else
-				memory.writebyte(SPECIAL[1])
+				memory.writebyte(0xD196,SPECIAL[1])
 			end
 			memory.writebyte(0xD173,math.random(1,164))
 			memory.writebyte(0xD174,math.random(1,164))
@@ -979,11 +979,11 @@ while true do
 			end
 			CurHP[2] = (memory.readbyte(0xD199)+memory.readbyte(0xD198)*255)/(memory.readbyte(0xD1BA)+memory.readbyte(0xD1B9)*255)
 			memory.writebyte(0xD165,Pokemon[math.random(#Pokemon)])
-			HP[2] = ((HPBase[memory.readbyte(0xD165)] + HPIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1A9) + memory.readbyte(0xD1A8)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100)+ memory.readbyte(0xD1B8)+ 10
-			A[2] = ((ABase[memory.readbyte(0xD165)] + AIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1AB) + memory.readbyte(0xD1AA)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100)+ 5
-			D[2] = ((DBase[memory.readbyte(0xD165)] + DIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1AD) + memory.readbyte(0xD1AC)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100)+ 5
-			SPEED[2] = ((SpeedBase[memory.readbyte(0xD165)] + SPEEDIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1C0) + memory.readbyte(0xD1BF)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100)+ 5
-			SPECIAL[2] = ((SpecialBase[memory.readbyte(0xD165)] + SPECIALIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1C2) + memory.readbyte(0xD1C1)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100)+ 5
+			HP[2] = ((HPBase[memory.readbyte(0xD165)] + HPIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1A9) + memory.readbyte(0xD1A8)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100+ memory.readbyte(0xD1B8)+ 10
+			A[2] = ((ABase[memory.readbyte(0xD165)] + AIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1AB) + memory.readbyte(0xD1AA)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100+ 5
+			D[2] = ((DBase[memory.readbyte(0xD165)] + DIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1AD) + memory.readbyte(0xD1AC)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100+ 5
+			SPEED[2] = ((SpeedBase[memory.readbyte(0xD165)] + SPEEDIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1C0) + memory.readbyte(0xD1BF)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100+ 5
+			SPECIAL[2] = ((SpecialBase[memory.readbyte(0xD165)] + SPECIALIV[2])* 2 + (math.sqrt(memory.readbyte(0xD1C2) + memory.readbyte(0xD1C1)* 255))/ 4)*memory.readbyte(0xD1B8)/ 100+ 5
 			if HP [2] > 255 then
 				memory.writebyte(0xD1B9,math.floor(HP[2]/255))
 				memory.writebyte(0xD1BA,HP[2] - memory.readbyte(0xD1B9)*255)
@@ -1114,8 +1114,9 @@ while true do
 				memory.writebyte(0xD1E6,HP[3] - memory.readbyte(0xD1E5)*255)
 				memory.writebyte(0xD1C4,math.floor(HP[3]*CurHP[3]/255))
 				memory.writebyte(0xD1C5,HP[3]*CurHP[3] - memory.readbyte(0xD1C4)*255)
-				if memory.readbyte(0xD1C4)+memory.readbyte(0xD1C5) == 0 and CurHP[3] > 0
+				if memory.readbyte(0xD1C4)+memory.readbyte(0xD1C5) == 0 and CurHP[3] > 0 then
 					memory.writebyte(0xD1C5,1)
+				end
 			else
 				memory.writebyte(0xD1E6,HP[3])
 				memory.writebyte(0xD1C5,HP[3]*CurHP[3])
@@ -1152,7 +1153,7 @@ while true do
 			memory.writebyte(0xD1CD,math.random(1,164))
 			memory.writebyte(0xD1CE,math.random(1,164))
 		end
-		if memory.readbyte(0xD167) > 0 and memory.readbyte(0xD167) then
+		if memory.readbyte(0xD167) > 0 and memory.readbyte(0xD167) < 255 then
 			IV = memory.readbyte(0xD20A)
 			HPIV[4]=0
 			AIV[4]=0
@@ -1488,13 +1489,13 @@ while true do
 				memory.writebyte(0xD26A,HP[6] - memory.readbyte(0xD269)*255)
 				memory.writebyte(0xD248,math.floor(HP[6]*CurHP[6]/255))
 				memory.writebyte(0xD249,HP[6]*CurHP[6] - memory.readbyte(0xD248)*255)
-				if memory.readbyte(0xD249) + memory.readbyte(0xD248) == 0 and CurHP[6] > 0
+				if memory.readbyte(0xD249) + memory.readbyte(0xD248) == 0 and CurHP[6] > 0 then
 					memory.writebyte(0xD249,1)
 				end
 			else
 				memory.writebyte(0xD26A,HP[6])
 				memory.writebyte(0xD249,HP[6]*CurHP[6])
-				if memory.readbyte(0xD249) == 0 and CurHP[6] > 0
+				if memory.readbyte(0xD249) == 0 and CurHP[6] > 0 then
 					memory.writebyte(0xD249,1)
 				end
 			end
