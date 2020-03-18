@@ -1,14 +1,19 @@
+local Level = {}
+local type1 = {}
+local type2 = {}
+local PP = {}
+local CurPP = {}
 local HPIV = {}
 local AIV = {}
 local DIV = {}
 local SPEEDIV = {}
 local SPECIALIV = {}
-CurHP = {}
-HP = {}
-A = {}
-D = {}
-SPEED = {}
-SPECIAL = {}
+local CurHP = {}
+local HP = {}
+local A = {}
+local D = {}
+local SPEED = {}
+local SPECIAL = {}
 local SpecialBase = {}
 local SpeedBase = {}
 local DBase = {}
@@ -769,6 +774,472 @@ ABase[190] = 105
 DBase[190] = 65
 SpeedBase[190] = 70
 SpecialBase[190] = 100
+PP[1] = 35
+PP[2] = 25
+PP[3] = 10
+PP[4] = 15
+PP[5] = 20
+PP[6] = 20
+PP[7] = 15
+PP[8] = 15
+PP[9] = 15
+PP[10] = 35
+PP[11] = 30
+PP[12] = 5
+PP[13] = 10
+PP[14] = 20
+PP[15] = 30
+PP[16] = 35
+PP[17] = 35
+PP[18] = 20
+PP[19] = 15
+PP[20] = 20
+PP[21] = 20
+PP[22] = 25
+PP[23] = 20
+PP[24] = 30
+PP[25] = 5
+PP[26] = 10
+PP[27] = 15
+PP[28] = 15
+PP[29] = 15
+PP[30] = 25
+PP[31] = 20
+PP[32] = 5
+PP[33] = 35
+PP[34] = 15
+PP[35] = 20
+PP[36] = 20
+PP[37] = 10
+PP[38] = 15
+PP[39] = 30
+PP[40] = 35
+PP[41] = 20
+PP[42] = 20
+PP[43] = 30
+PP[44] = 25
+PP[45] = 40
+PP[46] = 20
+PP[47] = 15
+PP[48] = 20
+PP[49] = 20
+PP[50] = 20
+PP[51] = 30
+PP[52] = 25
+PP[53] = 15
+PP[54] = 30
+PP[55] = 25
+PP[56] = 5
+PP[57] = 15
+PP[58] = 10
+PP[59] = 5
+PP[60] = 20
+PP[61] = 20
+PP[62] = 20
+PP[63] = 5
+PP[64] = 35
+PP[65] = 20
+PP[66] = 20
+PP[67] = 20
+PP[68] = 20
+PP[69] = 20
+PP[70] = 15
+PP[71] = 25
+PP[72] = 15
+PP[73] = 10
+PP[74] = 20
+PP[75] = 25
+PP[76] = 10
+PP[77] = 35
+PP[78] = 30
+PP[79] = 15
+PP[80] = 10
+PP[81] = 40
+PP[82] = 10
+PP[83] = 15
+PP[84] = 30
+PP[85] = 15
+PP[86] = 20
+PP[87] = 10
+PP[88] = 15
+PP[89] = 10
+PP[90] = 5
+PP[91] = 10
+PP[92] = 10
+PP[93] = 25
+PP[94] = 10
+PP[95] = 20
+PP[96] = 40
+PP[97] = 30
+PP[98] = 30
+PP[99] = 20
+PP[100] = 20
+PP[101] = 15
+PP[102] = 10
+PP[103] = 40
+PP[104] = 15
+PP[105] = 10
+PP[106] = 30
+PP[107] = 10
+PP[108] = 20
+PP[109] = 10
+PP[110] = 40
+PP[111] = 40
+PP[112] = 20
+PP[113] = 30
+PP[114] = 30
+PP[115] = 20
+PP[116] = 30
+PP[117] = 10
+PP[118] = 10
+PP[119] = 20
+PP[120] = 5
+PP[121] = 10
+PP[122] = 30
+PP[123] = 20
+PP[124] = 20
+PP[125] = 20
+PP[126] = 5
+PP[127] = 15
+PP[128] = 15
+PP[129] = 20
+PP[130] = 10
+PP[131] = 15
+PP[132] = 35
+PP[133] = 20
+PP[134] = 15
+PP[135] = 10
+PP[136] = 10
+PP[137] = 30
+PP[138] = 15
+PP[139] = 40
+PP[140] = 20
+PP[141] = 10
+PP[142] = 10
+PP[143] = 5
+PP[144] = 10
+PP[145] = 30
+PP[146] = 10
+PP[147] = 15
+PP[148] = 20
+PP[149] = 15
+PP[150] = 40
+PP[151] = 20
+PP[152] = 10
+PP[153] = 5
+PP[154] = 15
+PP[155] = 10
+PP[156] = 10
+PP[157] = 10
+PP[158] = 15
+PP[159] = 30
+PP[160] = 30
+PP[161] = 10
+PP[162] = 10
+PP[163] = 20
+PP[164] = 10
+type1[1] = 4
+type2[1] = 5
+type1[2] = 0
+type2[2] = 0
+type1[3] = 4
+type2[3] = 4
+type1[4] = 0
+type2[4] = 0
+type1[5] = 0
+type2[5] = 2
+type1[6] = 23
+type2[6] = 23
+type1[7] = 3
+type2[7] = 4
+type1[8] = 21
+type2[8] = 24
+type1[9] = 22
+type2[9] = 3
+type1[10] = 22
+type2[10] = 24
+type1[11] = 0
+type2[11] = 0
+type1[12] = 22
+type2[12] = 24
+type1[13] = 3
+type2[13] = 3
+type1[14] = 8
+type2[14] = 3
+type1[15] = 3
+type2[15] = 3
+type1[16] = 3
+type2[16] = 4
+type1[17] = 4
+type2[17] = 4
+type1[18] = 4
+type2[18] = 5
+type1[19] = 21
+type2[19] = 25
+type1[20] = 20
+type2[20] = 20
+type1[21] = 24
+type2[21] = 24
+type1[22] = 21
+type2[22] = 2
+type1[23] = 21
+type2[23] = 21
+type1[24] = 21
+type2[24] = 3
+type1[25] = 8
+type2[25] = 3
+type1[26] = 7
+type2[26] = 2
+type1[27] = 21
+type2[27] = 21
+type1[28] = 21
+type2[28] = 21
+type1[29] = 7
+type2[29] = 7
+type1[30] = 22
+type2[30] = 22
+type1[33] = 20
+type2[33] = 20
+type1[34] = 5
+type2[34] = 4
+type1[35] = 0
+type2[35] = 2
+type1[36] = 0
+type2[36] = 2
+type1[37] = 21
+type2[37] = 24
+type1[38] = 24
+type2[38] = 24
+type1[39] = 4
+type2[39] = 5
+type1[40] = 0
+type2[40] = 0
+type1[41] = 1
+type2[41] = 1
+type1[42] = 24
+type2[42] = 24
+type1[43] = 1
+type2[43] = 1
+type1[44] = 1
+type2[44] = 1
+type1[45] = 3
+type2[45] = 3
+type1[46] = 7
+type2[46] = 22
+type1[47] = 21
+type2[47] = 21
+type1[48] = 24
+type2[48] = 24
+type1[49] = 5
+type2[49] = 4
+type1[51] = 20
+type2[51] = 20
+type1[53] = 23
+type2[53] = 23
+type1[54] = 23
+type2[54] = 23
+type1[55] = 3
+type2[55] = 3
+type1[57] = 1
+type2[57] = 1
+type1[58] = 21
+type2[58] = 21
+type1[59] = 4
+type2[59] = 4
+type1[60] = 0
+type2[60] = 0
+type1[64] = 0
+type2[64] = 2
+type1[65] = 7
+type2[65] = 3
+type1[66] = 26
+type2[66] = 2
+type1[70] = 0
+type2[70] = 2
+type1[71] = 21
+type2[71] = 21
+type1[72] = 25
+type2[72] = 24
+type1[73] = 20
+type2[73] = 2
+type1[74] = 25
+type2[74] = 2
+type1[75] = 23
+type2[75] = 2
+type1[76] = 0
+type2[76] = 0
+type1[77] = 0
+type2[77] = 0
+type1[78] = 21
+type2[78] = 21
+type1[82] = 20
+type2[82] = 20
+type1[83] = 20
+type2[83] = 20
+type1[84] = 23
+type2[84] = 23
+type1[85] = 23
+type2[85] = 23
+type1[88] = 26
+type2[88] = 26
+type1[89] = 26
+type2[89] = 26
+type1[90] = 5
+type2[90] = 21
+type1[91] = 5
+type2[91] = 21
+type1[92] = 21
+type2[92] = 21
+type1[93] = 21
+type2[93] = 21
+type1[96] = 4
+type2[96] = 4
+type1[97] = 4
+type2[97] = 4
+type1[98] = 5
+type2[98] = 21
+type1[99] = 5
+type2[99] = 21
+type1[100] = 0
+type2[100] = 0
+type1[101] = 0
+type2[101] = 0
+type1[102] = 0
+type2[102] = 0
+type1[103] = 20
+type2[103] = 20
+type1[104] = 23
+type2[204] = 23
+type1[105] = 21
+type2[105] = 21
+type1[106] = 1
+type2[106] = 1
+type1[107] = 3
+type2[107] = 2
+type1[108] = 3
+type2[108] = 3
+type1[109] = 7
+type2[109] = 22
+type1[110] = 21
+type2[110] = 21
+type1[111] = 21
+type2[111] = 1
+type1[112] = 7
+type2[112] = 3
+type1[113] = 7
+type2[113] = 3
+type1[114] = 7
+type2[114] = 3
+type1[116] = 0
+type2[116] = 2
+type1[117] = 1
+type2[117] = 1
+type1[118] = 4
+type2[118] = 4
+type1[119] = 7
+type2[119] = 3
+type1[120] = 21
+type2[120] = 25
+type1[123] = 7
+type2[123] = 7
+type1[124] = 7
+type2[124] = 7
+type1[125] = 7
+type2[125] = 2
+type1[126] = 1
+type2[126] = 1
+type1[128] = 21
+type2[128] = 21
+type1[129] = 24
+type2[129] = 24
+type1[130] = 3
+type2[130] = 2
+type1[131] = 24
+type2[131] = 24
+type1[132] = 0
+type2[132] = 0
+type1[133] = 21
+type2[133] = 21
+type1[136] = 3
+type2[136] = 3
+type1[138] = 21
+type2[138] = 21
+type1[139] = 21
+type2[139] = 25
+type1[141] = 23
+type2[141] = 23
+type1[142] = 0
+type2[142] = 0
+type1[143] = 3
+type2[143] = 3
+type1[144] = 0
+type2[144] = 0
+type1[145] = 4
+type2[145] = 4
+type1[147] = 8
+type2[147] = 3
+type1[148] = 24
+type2[148] = 24
+type1[149] = 24
+type2[149] = 24
+type1[150] = 0
+type2[150] = 2
+type1[151] = 0
+type2[151] = 2
+type1[152] = 21
+type2[152] = 24
+type1[153] = 22
+type2[153] = 3
+type1[154] = 22
+type2[154] = 3
+type1[155] = 21
+type2[155] = 3
+type1[157] = 21
+type2[157] = 21
+type1[158] = 21
+type2[158] = 21
+type1[163] = 20
+type2[163] = 20
+type1[164] = 20
+type2[164] = 20
+type1[165] = 0
+type2[165] = 0
+type1[166] = 0
+type2[166] = 0
+type1[167] = 3
+type2[167] = 3
+type1[168] = 3
+type2[168] = 3
+type1[169] = 5
+type2[169] = 4
+type1[170] = 0
+type2[170] = 0
+type1[171] = 5
+type2[171] = 2
+type1[173] = 23
+type2[173] = 23
+type1[176] = 20
+type2[176] = 20
+type1[177] = 21
+type2[177] = 21
+type1[178] = 20
+type2[178] = 20
+type1[179] = 21
+type2[179] = 21
+type1[180] = 20
+type2[180] = 2
+type1[185] = 22
+type2[185] = 3
+type1[186] = 22
+type2[186] = 3
+type1[187] = 22
+type2[187] = 3
+type1[188] = 22
+type2[188] = 3
+type1[189] = 22
+type2[189] = 3
+type1[190] = 22
+type2[190] = 3
 local Pokemon = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,53,54,55,57,58,59,60,64,65,66,70,71,72,73,74,75,76,77,78,82,83,84,85,88,89,90,91,92,93,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,123,124,125,126,128,129,130,131,132,133,136,138,139,141,142,143,144,145,147,148,149,150,151,152,153,154,155,157,158,163,164,165,166,167,168,169,170,171,173,176,177,178,179,180,185,186,187,188,189,190}
 local Randomize = false
 local a
@@ -777,7 +1248,37 @@ local c
 local d
 local IV
 local i
-function IVcalc (a,b)
+local StatHP
+local StatHP255
+local StatCurHP
+local StatCurHP255
+local StatA
+local StatA255
+local StatD
+local StatD255
+local StatSPEED
+local StatSPEED255
+local StatSPECIAL
+local StatSPECIAL255
+local StatRandomPokemon
+local StatHPEV
+local StatHPEV255
+local StatAEV
+local StatAEV255
+local StatDEV
+local StatDEV255
+local StatSPECIALEV
+local StatSPECIALEV255
+local StatSPEEDEV
+local StatSPEEDEV255
+local StatLevel
+local CurPP1
+local CurPP2
+local CurPP3
+local CurPP4
+local Stattype1
+local Stattype2
+local function IVcalc (a,b)
 	IV = memory.readbyte(a)
 	HPIV[i]=0
 	AIV[i]=0
@@ -852,14 +1353,30 @@ function IVcalc (a,b)
 		HPIV[i] = HPIV[i] + 1
 	end
 end
-function Randommoves(a,b,c,d)
+local function Randommoves(a,b,c,d,CurPP1,CurPP2,CurPP3,CurPP4)
+	if memory.readbyte(b) == 0 then
+		memory.writebyte(b,math.random(1,164))
+	end
+	if memory.readbyte(c) == 0 then
+		memory.writebyte(c,math.random(1,164))
+	end
+	if memory.readbyte(d) == 0 then
+		memory.writebyte(d,math.random(1,164))
+	end
+	CurPP[1] = memory.readbyte(CurPP1) / PP[memory.readbyte(a)]
+	CurPP[2] = memory.readbyte(CurPP2) / PP[memory.readbyte(b)]
+	CurPP[3] = memory.readbyte(CurPP3) / PP[memory.readbyte(c)]
+	CurPP[4] = memory.readbyte(CurPP4) / PP[memory.readbyte(d)]
 	memory.writebyte(a,math.random(1,164))
 	memory.writebyte(b,math.random(1,164))
 	memory.writebyte(c,math.random(1,164))
 	memory.writebyte(d,math.random(1,164))
+	memory.writebyte(CurPP1,PP[memory.readbyte(a)] * CurPP[1])
+	memory.writebyte(CurPP2,PP[memory.readbyte(b)] * CurPP[2])
+	memory.writebyte(CurPP3,PP[memory.readbyte(c)] * CurPP[3])
+	memory.writebyte(CurPP4,PP[memory.readbyte(d)] * CurPP[4])
 end
-local Stat = {}
-function Write (StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,StatD,StatD255,StatSPEED,StatSPEED255,StatSPECIAL,StatSPECIAL255)
+local function Write(StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,StatD,StatD255,StatSPEED,StatSPEED255,StatSPECIAL,StatSPECIAL255)
 	if HP[i] > 255 then
 		memory.writebyte(StatHP255,math.floor(HP[i] / 255))
 		memory.writebyte(StatHP,HP[i] - memory.readbyte(StatHP255) * 255)
@@ -900,14 +1417,18 @@ function Write (StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,StatD,Sta
 		memory.writebyte(StatSPECIAL,SPECIAL[i])
 	end
 end
-function Statcalc(StatRandomPokemon,StatHP255,StatHP,StatCurHP255,StatCurHP,StatHPEV,StatHPEV255,StatAEV,StatAEV255,StatDEV,StatDEV255,StatSPECIALEV,StatSPECIALEV255,StatSPEEDEV,StatSPEEDEV255,StatLevel)
-			CurHP[i] = (memory.readbyte(StatCurHP) + memory.readbyte(StatCurHP255) * 255) / (memory.readbyte(StatHP) + memory.readbyte(StatHP255) * 255)
-			memory.writebyte(StatRandomPokemon,Pokemon[math.random(#Pokemon)])
-			HP[i] = ((HPBase[memory.readbyte(StatRandomPokemon)] + HPIV[i]) * 2 + (math.sqrt(memory.readbyte(StatHPEV) + memory.readbyte(StatHPEV255) * 255))/ 4) * memory.readbyte(StatLevel) / 100 + memory.readbyte(StatLevel) + 10
-			A[i] = ((ABase[memory.readbyte(StatRandomPokemon)] + AIV[i]) * 2 + (math.sqrt(memory.readbyte(StatAEV) + memory.readbyte(StatAEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
-			D[i] = ((DBase[memory.readbyte(StatRandomPokemon)] + DIV[i]) * 2 + (math.sqrt(memory.readbyte(StatDEV) + memory.readbyte(StatDEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
-			SPEED[i] = ((SpeedBase[memory.readbyte(StatRandomPokemon)] + SPEEDIV[i])* 2 + (math.sqrt(memory.readbyte(StatSPEEDEV) + memory.readbyte(StatSPEEDEV255) * 255))/ 4)*memory.readbyte(StatLevel) / 100 + 5
-			SPECIAL[i] = ((SpecialBase[memory.readbyte(StatRandomPokemon)] + SPECIALIV[i]) * 2 + (math.sqrt(memory.readbyte(StatSPECIALEV) + memory.readbyte(StatSPECIALEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
+local function Random(StatRandomPokemon,Stattype1,Stattype2)
+	memory.writebyte(StatRandomPokemon,Pokemon[math.random(#Pokemon)])
+	memory.writebyte(Stattype1,type1[memory.readbyte(StatRandomPokemon)])
+	memory.writebyte(Stattype2,type2[memory.readbyte(StatRandomPokemon)])
+end
+local function Statcalc(StatRandomPokemon,StatHPEV,StatHPEV255,StatAEV,StatAEV255,StatDEV,StatDEV255,StatSPECIALEV,StatSPECIALEV255,StatSPEEDEV,StatSPEEDEV255,StatLevel)
+	HP[i] = ((HPBase[memory.readbyte(StatRandomPokemon)] + HPIV[i]) * 2 + (math.sqrt(memory.readbyte(StatHPEV) + memory.readbyte(StatHPEV255) * 255))/ 4) * memory.readbyte(StatLevel) / 100 + memory.readbyte(StatLevel) + 10
+	A[i] = ((ABase[memory.readbyte(StatRandomPokemon)] + AIV[i]) * 2 + (math.sqrt(memory.readbyte(StatAEV) + memory.readbyte(StatAEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
+	D[i] = ((DBase[memory.readbyte(StatRandomPokemon)] + DIV[i]) * 2 + (math.sqrt(memory.readbyte(StatDEV) + memory.readbyte(StatDEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
+	SPEED[i] = ((SpeedBase[memory.readbyte(StatRandomPokemon)] + SPEEDIV[i])* 2 + (math.sqrt(memory.readbyte(StatSPEEDEV) + memory.readbyte(StatSPEEDEV255) * 255))/ 4)*memory.readbyte(StatLevel) / 100 + 5
+	SPECIAL[i] = ((SpecialBase[memory.readbyte(StatRandomPokemon)] + SPECIALIV[i]) * 2 + (math.sqrt(memory.readbyte(StatSPECIALEV) + memory.readbyte(StatSPECIALEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
+	Level[i] = memory.readbyte(StatLevel)
 end
 while true do
 	if memory.readbyte(0xCCD5) > 0 then
@@ -917,46 +1438,118 @@ while true do
 		Randomize = false
 		if memory.readbyte(0xD164) > 0 and memory.readbyte(0xD164) < 255 then
 			i = 1
+			CurHP[i] = (memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255) / (memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255)
 			IVcalc(0xD186,0xD187)
-			Statcalc(0xD164,0xD18D,0xD18E,0xD16C,0xD16D,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD180,0xD196,0xD195,0xD194,0xD193,0xD18C)
+			Random(0xD164,0xD170,0xD171)
+			Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
 			Write(0xD18E,0xD18D,0xD16D,0xD16C,0xD190,0xD18F,0xD192,0xD191,0xD194,0xD193,0xD196,0xD195)
-			Randommoves(0xD173,0xD174,0xD175,0xD176)
+			Randommoves(0xD173,0xD174,0xD175,0xD176,0xD188,0xD189,0xD18A,0xD18B)
 		end
 		if memory.readbyte(0xD165) > 0 and memory.readbyte(0xD165) < 255 then
 			i = 2
+			CurHP[i] = (memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255) / (memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255)
+			Random(0xD165,0xD19C,0xD19D)
 			IVcalc(0xD1B2,0xD1B3)
-			Statcalc(0xD165,0xD1B9,0xD1BA,0xD198,0xD199,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
+			Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
 			Write(0xD1BA,0xD1B9,0xD199,0xD198,0xD1BC,0xD1BB,0xD1BE,0xD1BD,0xD1C0,0xD1BF,0xD1C2,0xD1C1)
-			Randommoves(0xD19F,0xD1A0,0xD1A1,0xD1A2)
+			Randommoves(0xD19F,0xD1A0,0xD1A1,0xD1A2,0xD1B4,0xD1B5,0xD1B6,0xD1B7)
 		end
 		if memory.readbyte(0xD166) > 0 and memory.readbyte(0xD166) < 255 then
 			i = 3
+			CurHP[i] = (memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255) / (memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255)
+			Random(0xD166,0xD1C8,0xD1C9)
 			IVcalc(0xD1DE,0xD1DF)
-			Statcalc(0xD166,0xD1E5,0xD1E6,0xD1C4,0xD1C5,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
+			Statcalc(0xD166,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
 			Write(0xD1E6,0xD1E5,0xD1C5,0xD1C4,0xD1E8,0xD1E7,0xD1EA,0xD1E9,0xD1EC,0xD1EB,0xD1EE,0xD1ED)
-			Randommoves(0xD1CB,0xD1CC,0xD1CD,0xD1CE)
+			Randommoves(0xD1CB,0xD1CC,0xD1CD,0xD1CE,0xD1E0,0xD1E1,0xD1E2,0xD1E3)
 		end
 		if memory.readbyte(0xD167) > 0 and memory.readbyte(0xD167) < 255 then
 			i = 4
+			CurHP[i] = (memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255) / (memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255)
+			Random(0xD167,0xD1F4,0xD1F5)
 			IVcalc(0xD20A,0xD20B)
-			Statcalc(0xD167,0xD211,0xD212,0xD1F0,0xD1F1,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
+			Statcalc(0xD167,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
 			Write(0xD212,0xD211,0xD1F1,0xD1F0,0xD214,0xD213,0xD216,0xD215,0xD218,0xD217,0xD21A,0xD219)
-			Randommoves(0xD1F7,0xD1F8,0xD1F9,0xD1FA)
+			Randommoves(0xD1F7,0xD1F8,0xD1F9,0xD1FA,0xD20C,0xD20D,0xD20E,0xD20F)
 		end
 		if memory.readbyte(0xD168) > 0 and memory.readbyte(0xD168) < 255 then
 			i = 5
+			CurHP[i] = (memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255) / (memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255)
+			Random(0xD168,0xD220,0xD221)
 			IVcalc(0xD236,0xD237)
-			Statcalc(0xD168,0xD23D,0xD23E,0xD21C,0xD21D,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
+			Statcalc(0xD168,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
 			Write(0xD23E,0xD23D,0xD21D,0xD21C,0xD240,0xD23F,0xD242,0xD241,0xD244,0xD243,0xD246,0xD245)
-			Randommoves(0xD223,0xD224,0xD225,0xD226)
+			Randommoves(0xD223,0xD224,0xD225,0xD226,0xD238,0xD239,0xD23A,0xD23B)
 		end
-		if memory.readbyte(0xD169) > 0 and memory.readbyte(0xD165) < 255 then
+		if memory.readbyte(0xD169) > 0 and memory.readbyte(0xD169) < 255 then
 			i = 6
+			CurHP[i] = (memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255) / (memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255)
+			Random(0xD169,0xD24C,0xD24D)
 			IVcalc(0xD262,0xD263)
-			Statcalc(0xD169,0xD269,0xD26A,0xD248,0xD249,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
+			Statcalc(0xD169,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
 			Write(0xD26A,0xD269,0xD249,0xD248,0xD26C,0xD26B,0xD26E,0xD26D,0xD270,0xD26F,0xD272,0xD271)
-			Randommoves(0xD24F,0xD250,0xD251,0xD252)
+			Randommoves(0xD24F,0xD250,0xD251,0xD252,0xD264,0xD265,0xD266,0xD267)
 		end
 	end
-emu.frameadvance();
+	if Level[1] ~= nil then
+		if Level[1] ~= memory.readbyte(0xD18C) then
+			Level[1] = memory.readbyte(0xD18C)
+			i = 1
+			CurHP[i] = (memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255) / (memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255)
+			IVcalc(0xD186,0xD187)
+			Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
+			Write(0xD18E,0xD18D,0xD16D,0xD16C,0xD190,0xD18F,0xD192,0xD191,0xD194,0xD193,0xD196,0xD195)
+		end
+	end
+	if Level[2] ~= nil then
+		if Level[2] ~= memory.readbyte(0xD1B8) then
+			Level[2] = memory.readbyte(0xD1B8)
+			i = 2
+			CurHP[i] = (memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255) / (memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255)
+			IVcalc(0xD1B2,0xD1B3)
+			Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
+			Write(0xD1BA,0xD1B9,0xD199,0xD198,0xD1BC,0xD1BB,0xD1BE,0xD1BD,0xD1C0,0xD1BF,0xD1C2,0xD1C1)
+		end
+	end
+	if Level[3] ~= nil then
+		if Level[3] ~= memory.readbyte(0xD1E4) then
+			Level[3] = memory.readbyte(0xD1E4)
+			i = 3
+			CurHP[i] = (memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255) / (memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255)
+			IVcalc(0xD1DE,0xD1DF)
+			Statcalc(0xD166,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
+			Write(0xD1E6,0xD1E5,0xD1C5,0xD1C4,0xD1E8,0xD1E7,0xD1EA,0xD1E9,0xD1EC,0xD1EB,0xD1EE,0xD1ED)
+		end
+	end
+	if Level[4] ~= nil then
+		if Level[4] ~= memory.readbyte(0xD210) then
+			Level[4] = memory.readbyte(0xD210)
+			i = 4
+			CurHP[i] = (memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255) / (memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255)
+			IVcalc(0xD20A,0xD20B)
+			Statcalc(0xD167,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
+			Write(0xD212,0xD211,0xD1F1,0xD1F0,0xD214,0xD213,0xD216,0xD215,0xD218,0xD217,0xD21A,0xD219)
+		end
+	end
+	if Level[5] ~= nil then
+		if Level[5] ~= memory.readbyte(0xD23C) then
+			Level[5] = memory.readbyte(0xD23C)
+			i = 5
+			CurHP[i] = (memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255) / (memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255)
+			IVcalc(0xD236,0xD237)
+			Statcalc(0xD168,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
+			Write(0xD23E,0xD23D,0xD21D,0xD21C,0xD240,0xD23F,0xD242,0xD241,0xD244,0xD243,0xD246,0xD245)
+		end
+	end
+	if Level[6] ~= nil then
+		if Level[6] ~= memory.readbyte(0xD268) then
+			Level[6] = memory.readbyte(0xD268)
+			i = 6
+			CurHP[i] = (memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255) / (memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255)
+			IVcalc(0xD262,0xD263)
+			Statcalc(0xD169,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
+			Write(0xD26A,0xD269,0xD249,0xD248,0xD26C,0xD26B,0xD26E,0xD26D,0xD270,0xD26F,0xD272,0xD271)
+		end
+	end
+	emu.frameadvance();
 end
