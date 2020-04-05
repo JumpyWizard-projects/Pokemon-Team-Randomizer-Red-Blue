@@ -1370,6 +1370,11 @@ local function Randommoves(a,b,c,d,CurPP1,CurPP2,CurPP3,CurPP4)
 	CurPP[2] = memory.readbyte(CurPP2) / PP[memory.readbyte(b)]
 	CurPP[3] = memory.readbyte(CurPP3) / PP[memory.readbyte(c)]
 	CurPP[4] = memory.readbyte(CurPP4) / PP[memory.readbyte(d)]
+	for i = 1,4 do
+		if CurPP[i] > 1 then
+			CurPP[i] = 1
+		end
+	end
 	memory.writebyte(a,math.random(1,164))
 	memory.writebyte(b,math.random(1,164))
 	memory.writebyte(c,math.random(1,164))
@@ -1427,6 +1432,7 @@ local function Statcalc(StatRandomPokemon,StatHPEV,StatHPEV255,StatAEV,StatAEV25
 	SPECIAL[i] = ((SpecialBase[memory.readbyte(StatRandomPokemon)] + SPECIALIV[i]) * 2 + (math.sqrt(memory.readbyte(StatSPECIALEV) + memory.readbyte(StatSPECIALEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
 	Level[i] = memory.readbyte(StatLevel)
 end
+print(collectgarbage("count"))
 math.randomseed(os.time())
 while true do
 	if memory.readbyte(0xCCD5) > 0 then
@@ -1434,9 +1440,13 @@ while true do
 	end
 	if Randomize == true and memory.readbyte(0xCCD5) == 0 then
 		Randomize = false
+		print(collectgarbage("count"))
 		if memory.readbyte(0xD164) > 0 and memory.readbyte(0xD164) < 255 then
 			i = 1
 			CurHP[i] = (memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255) / (memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			IVcalc(0xD186,0xD187)
 			Random(0xD164,0xD170,0xD171)
 			Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
@@ -1446,6 +1456,9 @@ while true do
 		if memory.readbyte(0xD165) > 0 and memory.readbyte(0xD165) < 255 then
 			i = 2
 			CurHP[i] = (memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255) / (memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			Random(0xD165,0xD19C,0xD19D)
 			IVcalc(0xD1B2,0xD1B3)
 			Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
@@ -1455,6 +1468,9 @@ while true do
 		if memory.readbyte(0xD166) > 0 and memory.readbyte(0xD166) < 255 then
 			i = 3
 			CurHP[i] = (memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255) / (memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			Random(0xD166,0xD1C8,0xD1C9)
 			IVcalc(0xD1DE,0xD1DF)
 			Statcalc(0xD166,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
@@ -1464,6 +1480,9 @@ while true do
 		if memory.readbyte(0xD167) > 0 and memory.readbyte(0xD167) < 255 then
 			i = 4
 			CurHP[i] = (memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255) / (memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			Random(0xD167,0xD1F4,0xD1F5)
 			IVcalc(0xD20A,0xD20B)
 			Statcalc(0xD167,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
@@ -1473,6 +1492,9 @@ while true do
 		if memory.readbyte(0xD168) > 0 and memory.readbyte(0xD168) < 255 then
 			i = 5
 			CurHP[i] = (memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255) / (memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			Random(0xD168,0xD220,0xD221)
 			IVcalc(0xD236,0xD237)
 			Statcalc(0xD168,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
@@ -1482,6 +1504,9 @@ while true do
 		if memory.readbyte(0xD169) > 0 and memory.readbyte(0xD169) < 255 then
 			i = 6
 			CurHP[i] = (memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255) / (memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			Random(0xD169,0xD24C,0xD24D)
 			IVcalc(0xD262,0xD263)
 			Statcalc(0xD169,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
@@ -1494,6 +1519,9 @@ while true do
 			Level[1] = memory.readbyte(0xD18C)
 			i = 1
 			CurHP[i] = (memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255) / (memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			IVcalc(0xD186,0xD187)
 			Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
 			Write(0xD18E,0xD18D,0xD16D,0xD16C,0xD190,0xD18F,0xD192,0xD191,0xD194,0xD193,0xD196,0xD195)
@@ -1504,6 +1532,9 @@ while true do
 			Level[2] = memory.readbyte(0xD1B8)
 			i = 2
 			CurHP[i] = (memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255) / (memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			IVcalc(0xD1B2,0xD1B3)
 			Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
 			Write(0xD1BA,0xD1B9,0xD199,0xD198,0xD1BC,0xD1BB,0xD1BE,0xD1BD,0xD1C0,0xD1BF,0xD1C2,0xD1C1)
@@ -1514,6 +1545,9 @@ while true do
 			Level[3] = memory.readbyte(0xD1E4)
 			i = 3
 			CurHP[i] = (memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255) / (memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			IVcalc(0xD1DE,0xD1DF)
 			Statcalc(0xD166,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
 			Write(0xD1E6,0xD1E5,0xD1C5,0xD1C4,0xD1E8,0xD1E7,0xD1EA,0xD1E9,0xD1EC,0xD1EB,0xD1EE,0xD1ED)
@@ -1524,6 +1558,9 @@ while true do
 			Level[4] = memory.readbyte(0xD210)
 			i = 4
 			CurHP[i] = (memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255) / (memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			IVcalc(0xD20A,0xD20B)
 			Statcalc(0xD167,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
 			Write(0xD212,0xD211,0xD1F1,0xD1F0,0xD214,0xD213,0xD216,0xD215,0xD218,0xD217,0xD21A,0xD219)
@@ -1534,6 +1571,9 @@ while true do
 			Level[5] = memory.readbyte(0xD23C)
 			i = 5
 			CurHP[i] = (memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255) / (memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			IVcalc(0xD236,0xD237)
 			Statcalc(0xD168,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
 			Write(0xD23E,0xD23D,0xD21D,0xD21C,0xD240,0xD23F,0xD242,0xD241,0xD244,0xD243,0xD246,0xD245)
@@ -1544,6 +1584,9 @@ while true do
 			Level[6] = memory.readbyte(0xD268)
 			i = 6
 			CurHP[i] = (memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255) / (memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255)
+			if CurHP[i] > 1 then
+				CurHP[i] = 1
+			end
 			IVcalc(0xD262,0xD263)
 			Statcalc(0xD169,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
 			Write(0xD26A,0xD269,0xD249,0xD248,0xD26C,0xD26B,0xD26E,0xD26D,0xD270,0xD26F,0xD272,0xD271)
