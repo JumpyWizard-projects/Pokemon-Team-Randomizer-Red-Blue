@@ -1356,12 +1356,15 @@ end
 local function Randommoves(a,b,c,d,CurPP1,CurPP2,CurPP3,CurPP4)
 	if memory.readbyte(b) == 0 then
 		memory.writebyte(b,math.random(1,164))
+		memory.writebyte(CurPP2,PP[memory.readbyte(b)])
 	end
 	if memory.readbyte(c) == 0 then
 		memory.writebyte(c,math.random(1,164))
+		memory.writebyte(CurPP3,PP[memory.readbyte(c)])
 	end
 	if memory.readbyte(d) == 0 then
 		memory.writebyte(d,math.random(1,164))
+		memory.writebyte(CurPP4,PP[memory.readbyte(d)])
 	end
 	CurPP[1] = memory.readbyte(CurPP1) / PP[memory.readbyte(a)]
 	CurPP[2] = memory.readbyte(CurPP2) / PP[memory.readbyte(b)]
@@ -1379,18 +1382,12 @@ end
 local function Write(StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,StatD,StatD255,StatSPEED,StatSPEED255,StatSPECIAL,StatSPECIAL255)
 	if HP[i] > 255 then
 		memory.writebyte(StatHP255,math.floor(HP[i] / 255))
-		memory.writebyte(StatHP,HP[i] - memory.readbyte(StatHP255) * 255)
+		memory.writebyte(StatHP,math.ceil(HP[i] - memory.readbyte(StatHP255) * 255))
 		memory.writebyte(StatCurHP255,math.floor(HP[i] * CurHP[i] / 255))
-		memory.writebyte(StatCurHP,HP[i] * CurHP[i] - memory.readbyte(StatCurHP255) * 255)
-		if memory.readbyte(StatCurHP255)+memory.readbyte(StatCurHP) == 0 and CurHP > 0 then
-			memory.writebyte(CurHP,1)
-		end
+		memory.writebyte(StatCurHP,math.ceil(HP[i] * CurHP[i] - memory.readbyte(StatCurHP255) * 255))
 	else
-		memory.writebyte(StatHP,HP[i])
-		memory.writebyte(StatCurHP,HP[i]*CurHP[i])
-		if memory.readbyte(StatCurHP) == 0 and CurHP[1] > 0 then
-			memory.writebyte(StatCurHP,1)
-		end
+		memory.writebyte(StatHP,math.ceil(HP[i]))
+		memory.writebyte(StatCurHP,math.ceil(HP[i]*CurHP[i]))
 	end
 	if A[i] > 255 then
 		memory.writebyte(StatA255,math.floor(A[i] / 255))
@@ -1430,6 +1427,7 @@ local function Statcalc(StatRandomPokemon,StatHPEV,StatHPEV255,StatAEV,StatAEV25
 	SPECIAL[i] = ((SpecialBase[memory.readbyte(StatRandomPokemon)] + SPECIALIV[i]) * 2 + (math.sqrt(memory.readbyte(StatSPECIALEV) + memory.readbyte(StatSPECIALEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
 	Level[i] = memory.readbyte(StatLevel)
 end
+math.randomseed(os.time())
 while true do
 	if memory.readbyte(0xCCD5) > 0 then
 		Randomize = true
