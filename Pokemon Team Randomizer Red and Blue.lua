@@ -1432,7 +1432,6 @@ local function Statcalc(StatRandomPokemon,StatHPEV,StatHPEV255,StatAEV,StatAEV25
 	SPECIAL[i] = ((SpecialBase[memory.readbyte(StatRandomPokemon)] + SPECIALIV[i]) * 2 + (math.sqrt(memory.readbyte(StatSPECIALEV) + memory.readbyte(StatSPECIALEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
 	Level[i] = memory.readbyte(StatLevel)
 end
-print(collectgarbage("count"))
 math.randomseed(os.time())
 while true do
 	if memory.readbyte(0xCCD5) > 0 then
@@ -1440,7 +1439,6 @@ while true do
 	end
 	if Randomize == true and memory.readbyte(0xCCD5) == 0 then
 		Randomize = false
-		print(collectgarbage("count"))
 		if memory.readbyte(0xD164) > 0 and memory.readbyte(0xD164) < 255 then
 			i = 1
 			CurHP[i] = (memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255) / (memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255)
@@ -1517,6 +1515,9 @@ while true do
 	if Level[1] ~= nil then
 		if Level[1] ~= memory.readbyte(0xD18C) then
 			Level[1] = memory.readbyte(0xD18C)
+			for i = 1,10 do
+				emu.frameadvance();
+			end
 			i = 1
 			CurHP[i] = (memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255) / (memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255)
 			if CurHP[i] > 1 then
@@ -1530,6 +1531,9 @@ while true do
 	if Level[2] ~= nil then
 		if Level[2] ~= memory.readbyte(0xD1B8) then
 			Level[2] = memory.readbyte(0xD1B8)
+			for i = 1,10 do
+				emu.frameadvance();
+			end
 			i = 2
 			CurHP[i] = (memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255) / (memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255)
 			if CurHP[i] > 1 then
@@ -1543,6 +1547,9 @@ while true do
 	if Level[3] ~= nil then
 		if Level[3] ~= memory.readbyte(0xD1E4) then
 			Level[3] = memory.readbyte(0xD1E4)
+			for i = 1,10 do
+				emu.frameadvance();
+			end
 			i = 3
 			CurHP[i] = (memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255) / (memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255)
 			if CurHP[i] > 1 then
@@ -1556,6 +1563,9 @@ while true do
 	if Level[4] ~= nil then
 		if Level[4] ~= memory.readbyte(0xD210) then
 			Level[4] = memory.readbyte(0xD210)
+			for i = 1,10 do
+				emu.frameadvance();
+			end
 			i = 4
 			CurHP[i] = (memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255) / (memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255)
 			if CurHP[i] > 1 then
@@ -1569,6 +1579,9 @@ while true do
 	if Level[5] ~= nil then
 		if Level[5] ~= memory.readbyte(0xD23C) then
 			Level[5] = memory.readbyte(0xD23C)
+			for i = 1,10 do
+				emu.frameadvance();
+			end
 			i = 5
 			CurHP[i] = (memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255) / (memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255)
 			if CurHP[i] > 1 then
@@ -1582,6 +1595,9 @@ while true do
 	if Level[6] ~= nil then
 		if Level[6] ~= memory.readbyte(0xD268) then
 			Level[6] = memory.readbyte(0xD268)
+			for i = 1,10 do
+				emu.frameadvance();
+			end
 			i = 6
 			CurHP[i] = (memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255) / (memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255)
 			if CurHP[i] > 1 then
