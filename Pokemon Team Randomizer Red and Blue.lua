@@ -1,4 +1,8 @@
-print("This Programm is the Pokemon Team Randomizer visit jumpywizard.lima-city.de for more infos")
+print("This Programm is the Pokemon Team Randomizer for Pokemon Red or Blue visit jumpywizard.lima-city.de for more infos.")
+print(gameinfo.getromhash())
+if gameinfo.getromhash() ~= "EA9BCAE617FDF159B045185467AE58B2E4A48B9A" or gameinfo.getromhash() ~= D7037C83E1AE5B39BDE3C30787637BA1D4C48CE2 then
+	print("This is not a valid Rom make sure you use The US Version of Pokemon Red or Blue!")
+end
 local Level = {}
 local type1 = {}
 local type2 = {}
