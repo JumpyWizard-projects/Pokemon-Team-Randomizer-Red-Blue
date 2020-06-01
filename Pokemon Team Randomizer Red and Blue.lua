@@ -1,3 +1,4 @@
+print("This Programm is the Pokemon Team Randomizer visit jumpywizard.lima-city.de for more infos")
 local Level = {}
 local type1 = {}
 local type2 = {}
