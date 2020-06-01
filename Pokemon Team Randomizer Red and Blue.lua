@@ -19,6 +19,11 @@ local SpeedBase = {}
 local DBase = {}
 local ABase = {}
 local HPBase = {}
+local HPIV = {}
+local AIV = {}
+local DIV = {}
+local SPECIALIV = {}
+local SPEEDIV = {}
 HPBase[1] = 105
 ABase[1] = 130
 DBase[1] = 120
@@ -1241,50 +1246,14 @@ type2[189] = 3
 type1[190] = 22
 type2[190] = 3
 local Pokemon = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,53,54,55,57,58,59,60,64,65,66,70,71,72,73,74,75,76,77,78,82,83,84,85,88,89,90,91,92,93,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,123,124,125,126,128,129,130,131,132,133,136,138,139,141,142,143,144,145,147,148,149,150,151,152,153,154,155,157,158,163,164,165,166,167,168,169,170,171,173,176,177,178,179,180,185,186,187,188,189,190}
-local Randomize = false
-local a
-local b
-local c
-local d
-local IV
-local i
-local StatHP
-local StatHP255
-local StatCurHP
-local StatCurHP255
-local StatA
-local StatA255
-local StatD
-local StatD255
-local StatSPEED
-local StatSPEED255
-local StatSPECIAL
-local StatSPECIAL255
-local StatRandomPokemon
-local StatHPEV
-local StatHPEV255
-local StatAEV
-local StatAEV255
-local StatDEV
-local StatDEV255
-local StatSPECIALEV
-local StatSPECIALEV255
-local StatSPEEDEV
-local StatSPEEDEV255
-local StatLevel
-local CurPP1
-local CurPP2
-local CurPP3
-local CurPP4
-local Stattype1
-local Stattype2
+Randomize = false
 local function IVcalc (a,b)
-	IV = memory.readbyte(a)
-	HPIV[i]=0
-	AIV[i]=0
-	DIV[i]=0
-	SPEEDIV[i]=0
-	SPECIALIV[i]=0
+	local IV = memory.readbyte(a)
+	HPIV[i] = 0
+	AIV[i] = 0
+	DIV[i] = 0
+	SPEEDIV[i] = 0
+	SPECIALIV[i] = 0
 	if IV > 127 then
 		AIV[i] = 8
 		IV = IV - 128
@@ -1318,7 +1287,7 @@ local function IVcalc (a,b)
 		DIV[i] = DIV[i] + 1
 		HPIV[i] = HPIV[i] + 4
 	end
-	IV = memory.readbyte(b)
+	local IV = memory.readbyte(b)
 	if IV > 127 then
 		SPEEDIV[i] = 8
 		IV = IV - 128
@@ -1353,36 +1322,36 @@ local function IVcalc (a,b)
 		HPIV[i] = HPIV[i] + 1
 	end
 end
-local function Randommoves(a,b,c,d,CurPP1,CurPP2,CurPP3,CurPP4)
-	if memory.readbyte(b) == 0 then
-		memory.writebyte(b,math.random(1,164))
-		memory.writebyte(CurPP2,PP[memory.readbyte(b)])
+local function Randommoves(Move1,Move2,Move3,Move4,CurPP1,CurPP2,CurPP3,CurPP4)
+	if memory.readbyte(Move2) == 0 then
+		memory.writebyte(Move2,math.random(1,164))
+		memory.writebyte(CurPP2,PP[memory.readbyte(Move2)])
 	end
-	if memory.readbyte(c) == 0 then
-		memory.writebyte(c,math.random(1,164))
-		memory.writebyte(CurPP3,PP[memory.readbyte(c)])
+	if memory.readbyte(Move3) == 0 then
+		memory.writebyte(Move3,math.random(1,164))
+		memory.writebyte(CurPP3,PP[memory.readbyte(Move3)])
 	end
-	if memory.readbyte(d) == 0 then
-		memory.writebyte(d,math.random(1,164))
-		memory.writebyte(CurPP4,PP[memory.readbyte(d)])
+	if memory.readbyte(Move4) == 0 then
+		memory.writebyte(Move4,math.random(1,164))
+		memory.writebyte(CurPP4,PP[memory.readbyte(Move4)])
 	end
-	CurPP[1] = memory.readbyte(CurPP1) / PP[memory.readbyte(a)]
-	CurPP[2] = memory.readbyte(CurPP2) / PP[memory.readbyte(b)]
-	CurPP[3] = memory.readbyte(CurPP3) / PP[memory.readbyte(c)]
-	CurPP[4] = memory.readbyte(CurPP4) / PP[memory.readbyte(d)]
+	CurPP[1] = memory.readbyte(CurPP1) / PP[memory.readbyte(Move1)]
+	CurPP[2] = memory.readbyte(CurPP2) / PP[memory.readbyte(Move2)]
+	CurPP[3] = memory.readbyte(CurPP3) / PP[memory.readbyte(Move3)]
+	CurPP[4] = memory.readbyte(CurPP4) / PP[memory.readbyte(Move4)]
 	for i = 1,4 do
 		if CurPP[i] > 1 then
 			CurPP[i] = 1
 		end
 	end
-	memory.writebyte(a,math.random(1,164))
-	memory.writebyte(b,math.random(1,164))
-	memory.writebyte(c,math.random(1,164))
-	memory.writebyte(d,math.random(1,164))
-	memory.writebyte(CurPP1,PP[memory.readbyte(a)] * CurPP[1])
-	memory.writebyte(CurPP2,PP[memory.readbyte(b)] * CurPP[2])
-	memory.writebyte(CurPP3,PP[memory.readbyte(c)] * CurPP[3])
-	memory.writebyte(CurPP4,PP[memory.readbyte(d)] * CurPP[4])
+	memory.writebyte(Move1,math.random(1,164))
+	memory.writebyte(Move2,math.random(1,164))
+	memory.writebyte(Move3,math.random(1,164))
+	memory.writebyte(Move4,math.random(1,164))
+	memory.writebyte(CurPP1,PP[memory.readbyte(Move1)] * CurPP[1])
+	memory.writebyte(CurPP2,PP[memory.readbyte(Move2)] * CurPP[2])
+	memory.writebyte(CurPP3,PP[memory.readbyte(Move3)] * CurPP[3])
+	memory.writebyte(CurPP4,PP[memory.readbyte(Move4)] * CurPP[4])
 end
 local function Write(StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,StatD,StatD255,StatSPEED,StatSPEED255,StatSPECIAL,StatSPECIAL255)
 	if HP[i] > 255 then
@@ -1400,19 +1369,19 @@ local function Write(StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,Stat
 	else 
 		memory.writebyte(StatA,A[i])
 	end
-	if D[1] > 255 then
+	if D[i] > 255 then
 		memory.writebyte(StatD255,math.floor(D[i] / 255))
 		memory.writebyte(StatD,D[i] - memory.readbyte(Stat.D255) * 255)
 	else
 		memory.writebyte(StatD,D[i])
 	end
-	if SPEED[1] > 255 then
+	if SPEED[i] > 255 then
 		memory.writebyte(StatSPEED255,math.floor(SPEED[i] / 255))
 		memory.writebyte(StatSPEED,SPEED[i] - memory.readbyte(Stat.SPEED255) * 255)
 	else 
 		memory.writebyte(StatSPEED,SPEED[i])
 	end
-	if SPECIAL[1] > 255 then
+	if SPECIAL[i] > 255 then
 		memory.writebyte(StatSPECIAL255,math.floor(SPECIAL[i] / 255))
 		memory.writebyte(StatSPECIAL,SPECIAL[i] - memory.readbyte(Stat.SPECIAL255) * 255)
 	else
@@ -1432,12 +1401,37 @@ local function Statcalc(StatRandomPokemon,StatHPEV,StatHPEV255,StatAEV,StatAEV25
 	SPECIAL[i] = ((SpecialBase[memory.readbyte(StatRandomPokemon)] + SPECIALIV[i]) * 2 + (math.sqrt(memory.readbyte(StatSPECIALEV) + memory.readbyte(StatSPECIALEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
 	Level[i] = memory.readbyte(StatLevel)
 end
+local function checkHP()
+	if memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255 > memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255 then
+		memory.writebyte(0xD16D,memory.readbyte(0xD18D))
+		memory.writebyte(0xD16C,memory.readbyte(0xD18D))
+	end
+	if memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255 > memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255 then
+		memory.writebyte(0xD199,memory.readbyte(0xD1BA))
+		memory.writebyte(0xD198,memory.readbyte(0xD1B9))
+	end
+	if memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255 > memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255 then
+		memory.writebyte(0xD1C5,memory.readbyte(0xD1E6))
+		memory.writebyte(0xD1C4,memory.readbyte(0xD1E5))
+	end
+	if memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255 > memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255 then
+		memory.writebyte(0xD1F1,memory.readbyte(0xD212))
+		memory.writebyte(0xD1F0,memory.readbyte(0xD211))
+	end
+	if memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255 > memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255 then
+		memory.writebyte(0xD21D,memory.readbyte(0xD23E))
+		memory.writebyte(0xD21C,memory.readbyte(0xD23D))
+	end
+	if memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255 > memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255 then
+		memory.writebyte(0xD249,memory.readbyte(0xD26A))
+		memory.writebyte(0xD248,memory.readbyte(0xD269))
+	end
+end
 math.randomseed(os.time())
 while true do
 	if memory.readbyte(0xCCD5) > 0 then
 		Randomize = true
-	end
-	if Randomize == true and memory.readbyte(0xCCD5) == 0 then
+	elseif Randomize == true and memory.readbyte(0xCCD5) == 0 then
 		Randomize = false
 		if memory.readbyte(0xD164) > 0 and memory.readbyte(0xD164) < 255 then
 			i = 1
@@ -1488,7 +1482,7 @@ while true do
 			Randommoves(0xD1F7,0xD1F8,0xD1F9,0xD1FA,0xD20C,0xD20D,0xD20E,0xD20F)
 		end
 		if memory.readbyte(0xD168) > 0 and memory.readbyte(0xD168) < 255 then
-			i = 5
+			local i = 5
 			CurHP[i] = (memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255) / (memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255)
 			if CurHP[i] > 1 then
 				CurHP[i] = 1
@@ -1512,101 +1506,102 @@ while true do
 			Randommoves(0xD24F,0xD250,0xD251,0xD252,0xD264,0xD265,0xD266,0xD267)
 		end
 	end
-	if Level[1] ~= nil then
-		if Level[1] ~= memory.readbyte(0xD18C) then
-			Level[1] = memory.readbyte(0xD18C)
-			for i = 1,10 do
-				emu.frameadvance();
+		if Level[1] ~= nil then
+			if Level[1] ~= memory.readbyte(0xD18C) then
+				Level[1] = memory.readbyte(0xD18C)
+				for i = 1,10 do
+					emu.frameadvance();
+				end
+				i = 1
+				CurHP[i] = (memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255) / (memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255)
+				if CurHP[i] > 1 then
+					CurHP[i] = 1
+				end
+				IVcalc(0xD186,0xD187)
+				Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
+				Write(0xD18E,0xD18D,0xD16D,0xD16C,0xD190,0xD18F,0xD192,0xD191,0xD194,0xD193,0xD196,0xD195)
 			end
-			i = 1
-			CurHP[i] = (memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255) / (memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255)
-			if CurHP[i] > 1 then
-				CurHP[i] = 1
-			end
-			IVcalc(0xD186,0xD187)
-			Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
-			Write(0xD18E,0xD18D,0xD16D,0xD16C,0xD190,0xD18F,0xD192,0xD191,0xD194,0xD193,0xD196,0xD195)
 		end
-	end
-	if Level[2] ~= nil then
-		if Level[2] ~= memory.readbyte(0xD1B8) then
-			Level[2] = memory.readbyte(0xD1B8)
-			for i = 1,10 do
-				emu.frameadvance();
+		if Level[2] ~= nil then
+			if Level[2] ~= memory.readbyte(0xD1B8) then
+				Level[2] = memory.readbyte(0xD1B8)
+				for i = 1,10 do
+					emu.frameadvance();
+				end
+				i = 2
+				CurHP[i] = (memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255) / (memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255)
+				if CurHP[i] > 1 then
+					CurHP[i] = 1
+				end
+				IVcalc(0xD1B2,0xD1B3)
+				Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
+				Write(0xD1BA,0xD1B9,0xD199,0xD198,0xD1BC,0xD1BB,0xD1BE,0xD1BD,0xD1C0,0xD1BF,0xD1C2,0xD1C1)
 			end
-			i = 2
-			CurHP[i] = (memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255) / (memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255)
-			if CurHP[i] > 1 then
-				CurHP[i] = 1
-			end
-			IVcalc(0xD1B2,0xD1B3)
-			Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
-			Write(0xD1BA,0xD1B9,0xD199,0xD198,0xD1BC,0xD1BB,0xD1BE,0xD1BD,0xD1C0,0xD1BF,0xD1C2,0xD1C1)
 		end
-	end
-	if Level[3] ~= nil then
-		if Level[3] ~= memory.readbyte(0xD1E4) then
-			Level[3] = memory.readbyte(0xD1E4)
-			for i = 1,10 do
-				emu.frameadvance();
+		if Level[3] ~= nil then
+			if Level[3] ~= memory.readbyte(0xD1E4) then
+				Level[3] = memory.readbyte(0xD1E4)
+				for i = 1,10 do
+					emu.frameadvance();
+				end
+				i = 3
+				CurHP[i] = (memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255) / (memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255)
+				if CurHP[i] > 1 then
+					CurHP[i] = 1
+				end
+				IVcalc(0xD1DE,0xD1DF)
+				Statcalc(0xD166,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
+				Write(0xD1E6,0xD1E5,0xD1C5,0xD1C4,0xD1E8,0xD1E7,0xD1EA,0xD1E9,0xD1EC,0xD1EB,0xD1EE,0xD1ED)
 			end
-			i = 3
-			CurHP[i] = (memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255) / (memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255)
-			if CurHP[i] > 1 then
-				CurHP[i] = 1
-			end
-			IVcalc(0xD1DE,0xD1DF)
-			Statcalc(0xD166,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
-			Write(0xD1E6,0xD1E5,0xD1C5,0xD1C4,0xD1E8,0xD1E7,0xD1EA,0xD1E9,0xD1EC,0xD1EB,0xD1EE,0xD1ED)
 		end
-	end
-	if Level[4] ~= nil then
-		if Level[4] ~= memory.readbyte(0xD210) then
-			Level[4] = memory.readbyte(0xD210)
-			for i = 1,10 do
-				emu.frameadvance();
+		if Level[4] ~= nil then
+			if Level[4] ~= memory.readbyte(0xD210) then
+				Level[4] = memory.readbyte(0xD210)
+				for i = 1,10 do
+					emu.frameadvance();
+				end
+				i = 4
+				CurHP[i] = (memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255) / (memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255)
+				if CurHP[i] > 1 then
+					CurHP[i] = 1
+				end
+				IVcalc(0xD20A,0xD20B)
+				Statcalc(0xD167,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
+				Write(0xD212,0xD211,0xD1F1,0xD1F0,0xD214,0xD213,0xD216,0xD215,0xD218,0xD217,0xD21A,0xD219)
 			end
-			i = 4
-			CurHP[i] = (memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255) / (memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255)
-			if CurHP[i] > 1 then
-				CurHP[i] = 1
-			end
-			IVcalc(0xD20A,0xD20B)
-			Statcalc(0xD167,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
-			Write(0xD212,0xD211,0xD1F1,0xD1F0,0xD214,0xD213,0xD216,0xD215,0xD218,0xD217,0xD21A,0xD219)
 		end
-	end
-	if Level[5] ~= nil then
-		if Level[5] ~= memory.readbyte(0xD23C) then
-			Level[5] = memory.readbyte(0xD23C)
-			for i = 1,10 do
-				emu.frameadvance();
+		if Level[5] ~= nil then
+			if Level[5] ~= memory.readbyte(0xD23C) then
+				Level[5] = memory.readbyte(0xD23C)
+				for i = 1,10 do
+					emu.frameadvance();
+				end
+				i = 5
+				CurHP[i] = (memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255) / (memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255)
+				if CurHP[i] > 1 then
+					CurHP[i] = 1
+				end
+				IVcalc(0xD236,0xD237)
+				Statcalc(0xD168,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
+				Write(0xD23E,0xD23D,0xD21D,0xD21C,0xD240,0xD23F,0xD242,0xD241,0xD244,0xD243,0xD246,0xD245)
 			end
-			i = 5
-			CurHP[i] = (memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255) / (memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255)
-			if CurHP[i] > 1 then
-				CurHP[i] = 1
-			end
-			IVcalc(0xD236,0xD237)
-			Statcalc(0xD168,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
-			Write(0xD23E,0xD23D,0xD21D,0xD21C,0xD240,0xD23F,0xD242,0xD241,0xD244,0xD243,0xD246,0xD245)
 		end
-	end
-	if Level[6] ~= nil then
-		if Level[6] ~= memory.readbyte(0xD268) then
-			Level[6] = memory.readbyte(0xD268)
-			for i = 1,10 do
-				emu.frameadvance();
+		if Level[6] ~= nil then
+			if Level[6] ~= memory.readbyte(0xD268) then
+				Level[6] = memory.readbyte(0xD268)
+				for i = 1,10 do
+					emu.frameadvance();
+				end
+				i = 6
+				CurHP[i] = (memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255) / (memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255)
+				if CurHP[i] > 1 then
+					CurHP[i] = 1
+				end
+				IVcalc(0xD262,0xD263)
+				Statcalc(0xD169,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
+				Write(0xD26A,0xD269,0xD249,0xD248,0xD26C,0xD26B,0xD26E,0xD26D,0xD270,0xD26F,0xD272,0xD271)
 			end
-			i = 6
-			CurHP[i] = (memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255) / (memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255)
-			if CurHP[i] > 1 then
-				CurHP[i] = 1
-			end
-			IVcalc(0xD262,0xD263)
-			Statcalc(0xD169,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
-			Write(0xD26A,0xD269,0xD249,0xD248,0xD26C,0xD26B,0xD26E,0xD26D,0xD270,0xD26F,0xD272,0xD271)
 		end
-	end
+	checkHP()
 	emu.frameadvance();
 end
