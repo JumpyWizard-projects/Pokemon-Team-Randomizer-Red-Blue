@@ -1,7 +1,12 @@
 print("This Programm is the Pokemon Team Randomizer for Pokemon Red or Blue visit jumpywizard.lima-city.de for more infos.")
-if gameinfo.getromhash() ~= "EA9BCAE617FDF159B045185467AE58B2E4A48B9A" or gameinfo.getromhash() ~= D7037C83E1AE5B39BDE3C30787637BA1D4C48CE2 then
+if gameinfo.getromhash() ~= "EA9BCAE617FDF159B045185467AE58B2E4A48B9A" and gameinfo.getromhash() ~= "D7037C83E1AE5B39BDE3C30787637BA1D4C48CE2" then
 	print("This is not a valid Rom make sure you use The US Version of Pokemon Red or Blue!")
+else
+	print("Your Rom seems Fine.")
 end
+
+
+
 local Level = {}
 local type1 = {}
 local type2 = {}
@@ -1251,7 +1256,36 @@ type1[190] = 22
 type2[190] = 3
 local Pokemon = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,51,53,54,55,57,58,59,60,64,65,66,70,71,72,73,74,75,76,77,78,82,83,84,85,88,89,90,91,92,93,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,116,117,118,119,120,123,124,125,126,128,129,130,131,132,133,136,138,139,141,142,143,144,145,147,148,149,150,151,152,153,154,155,157,158,163,164,165,166,167,168,169,170,171,173,176,177,178,179,180,185,186,187,188,189,190}
 Randomize = false
-local function IVcalc (a,b)
+
+
+
+local function BattleHPWrite()
+	local ADIV = memory.readbyte(0xD020)
+	local SSIV = memory.readbyte(0xD021)
+	if ADIV == memory.readbyte(0xD186) and SSIV == memory.readbyte(0xD187) then 
+		memory.writebyte(0xD015,memory.readbyte(0xD16C))
+		memory.writebyte(0xD016,memory.readbyte(0xD16D))
+	elseif ADIV == memory.readbyte(0xD1B2) and SSIV == memory.readbyte(0xD1B3) then
+		memory.writebyte(0xD015,memory.readbyte(0xD198))
+		memory.writebyte(0xD016,memory.readbyte(0xD199))
+	elseif ADIV == memory.readbyte(0xD1DE) and SSIV == memory.readbyte(0xD1DF) then
+		memory.writebyte(0xD015,memory.readbyte(0xD1C4))
+		memory.writebyte(0xD016,memory.readbyte(0xD1C5))
+	elseif ADIV == memory.readbyte(0xD20A) and SSIV == memory.readbyte(0xD20B) then
+		memory.writebyte(0xD015,memory.readbyte(0xD1F0))
+		memory.writebyte(0xD016,memory.readbyte(0xD1F1))
+	elseif ADIV == memory.readbyte(0xD236) and SSIV == memory.readbyte(0xD237) then
+		memory.writebyte(0xD015,memory.readbyte(0xD21C))
+		memory.writebyte(0xD016,memory.readbyte(0xD21D))
+	elseif ADIV == memory.readbyte(0xD262) and SSIV == memory.readbyte(0xD263) then
+		memory.writebyte(0xD015,memory.readbyte(0xD248))
+		memory.writebyte(0xD016,memory.readbyte(0xD249))
+	end
+end
+
+
+
+local function IVcalc(a,b)
 	local IV = memory.readbyte(a)
 	HPIV[i] = 0
 	AIV[i] = 0
@@ -1326,6 +1360,9 @@ local function IVcalc (a,b)
 		HPIV[i] = HPIV[i] + 1
 	end
 end
+
+
+
 local function Randommoves(Move1,Move2,Move3,Move4,CurPP1,CurPP2,CurPP3,CurPP4)
 	if memory.readbyte(Move2) == 0 then
 		memory.writebyte(Move2,math.random(1,164))
@@ -1357,6 +1394,10 @@ local function Randommoves(Move1,Move2,Move3,Move4,CurPP1,CurPP2,CurPP3,CurPP4)
 	memory.writebyte(CurPP3,PP[memory.readbyte(Move3)] * CurPP[3])
 	memory.writebyte(CurPP4,PP[memory.readbyte(Move4)] * CurPP[4])
 end
+
+
+
+
 local function Write(StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,StatD,StatD255,StatSPEED,StatSPEED255,StatSPECIAL,StatSPECIAL255)
 	if HP[i] > 255 then
 		memory.writebyte(StatHP255,math.floor(HP[i] / 255))
@@ -1392,11 +1433,17 @@ local function Write(StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,Stat
 		memory.writebyte(StatSPECIAL,SPECIAL[i])
 	end
 end
+
+
+
 local function Random(StatRandomPokemon,Stattype1,Stattype2)
 	memory.writebyte(StatRandomPokemon,Pokemon[math.random(#Pokemon)])
 	memory.writebyte(Stattype1,type1[memory.readbyte(StatRandomPokemon)])
 	memory.writebyte(Stattype2,type2[memory.readbyte(StatRandomPokemon)])
 end
+
+
+
 local function Statcalc(StatRandomPokemon,StatHPEV,StatHPEV255,StatAEV,StatAEV255,StatDEV,StatDEV255,StatSPECIALEV,StatSPECIALEV255,StatSPEEDEV,StatSPEEDEV255,StatLevel)
 	HP[i] = ((HPBase[memory.readbyte(StatRandomPokemon)] + HPIV[i]) * 2 + (math.sqrt(memory.readbyte(StatHPEV) + memory.readbyte(StatHPEV255) * 255))/ 4) * memory.readbyte(StatLevel) / 100 + memory.readbyte(StatLevel) + 10
 	A[i] = ((ABase[memory.readbyte(StatRandomPokemon)] + AIV[i]) * 2 + (math.sqrt(memory.readbyte(StatAEV) + memory.readbyte(StatAEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
@@ -1405,33 +1452,13 @@ local function Statcalc(StatRandomPokemon,StatHPEV,StatHPEV255,StatAEV,StatAEV25
 	SPECIAL[i] = ((SpecialBase[memory.readbyte(StatRandomPokemon)] + SPECIALIV[i]) * 2 + (math.sqrt(memory.readbyte(StatSPECIALEV) + memory.readbyte(StatSPECIALEV255)* 255))/ 4) * memory.readbyte(StatLevel) / 100 + 5
 	Level[i] = memory.readbyte(StatLevel)
 end
-local function checkHP()
-	if memory.readbyte(0xD16D) + memory.readbyte(0xD16C) * 255 > memory.readbyte(0xD18E) + memory.readbyte(0xD18D) * 255 then
-		memory.writebyte(0xD16D,memory.readbyte(0xD18D))
-		memory.writebyte(0xD16C,memory.readbyte(0xD18D))
-	end
-	if memory.readbyte(0xD199) + memory.readbyte(0xD198) * 255 > memory.readbyte(0xD1BA) + memory.readbyte(0xD1B9) * 255 then
-		memory.writebyte(0xD199,memory.readbyte(0xD1BA))
-		memory.writebyte(0xD198,memory.readbyte(0xD1B9))
-	end
-	if memory.readbyte(0xD1C5) + memory.readbyte(0xD1C4) * 255 > memory.readbyte(0xD1E6) + memory.readbyte(0xD1E5) * 255 then
-		memory.writebyte(0xD1C5,memory.readbyte(0xD1E6))
-		memory.writebyte(0xD1C4,memory.readbyte(0xD1E5))
-	end
-	if memory.readbyte(0xD1F1) + memory.readbyte(0xD1F0) * 255 > memory.readbyte(0xD212) + memory.readbyte(0xD211) * 255 then
-		memory.writebyte(0xD1F1,memory.readbyte(0xD212))
-		memory.writebyte(0xD1F0,memory.readbyte(0xD211))
-	end
-	if memory.readbyte(0xD21D) + memory.readbyte(0xD21C) * 255 > memory.readbyte(0xD23E) + memory.readbyte(0xD23D) * 255 then
-		memory.writebyte(0xD21D,memory.readbyte(0xD23E))
-		memory.writebyte(0xD21C,memory.readbyte(0xD23D))
-	end
-	if memory.readbyte(0xD249) + memory.readbyte(0xD248) * 255 > memory.readbyte(0xD26A) + memory.readbyte(0xD269) * 255 then
-		memory.writebyte(0xD249,memory.readbyte(0xD26A))
-		memory.writebyte(0xD248,memory.readbyte(0xD269))
-	end
-end
+
+
+
 math.randomseed(os.time())
+
+
+
 while true do
 	if memory.readbyte(0xCCD5) > 0 then
 		Randomize = true
@@ -1510,6 +1537,9 @@ while true do
 			Randommoves(0xD24F,0xD250,0xD251,0xD252,0xD264,0xD265,0xD266,0xD267)
 		end
 	end
+	
+	
+	
 		if Level[1] ~= nil then
 			if Level[1] ~= memory.readbyte(0xD18C) then
 				Level[1] = memory.readbyte(0xD18C)
@@ -1524,6 +1554,7 @@ while true do
 				IVcalc(0xD186,0xD187)
 				Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
 				Write(0xD18E,0xD18D,0xD16D,0xD16C,0xD190,0xD18F,0xD192,0xD191,0xD194,0xD193,0xD196,0xD195)
+				BattleHPWrite()
 			end
 		end
 		if Level[2] ~= nil then
@@ -1540,6 +1571,7 @@ while true do
 				IVcalc(0xD1B2,0xD1B3)
 				Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
 				Write(0xD1BA,0xD1B9,0xD199,0xD198,0xD1BC,0xD1BB,0xD1BE,0xD1BD,0xD1C0,0xD1BF,0xD1C2,0xD1C1)
+				BattleHPWrite()
 			end
 		end
 		if Level[3] ~= nil then
@@ -1556,6 +1588,7 @@ while true do
 				IVcalc(0xD1DE,0xD1DF)
 				Statcalc(0xD166,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
 				Write(0xD1E6,0xD1E5,0xD1C5,0xD1C4,0xD1E8,0xD1E7,0xD1EA,0xD1E9,0xD1EC,0xD1EB,0xD1EE,0xD1ED)
+				BattleHPWrite()
 			end
 		end
 		if Level[4] ~= nil then
@@ -1572,6 +1605,7 @@ while true do
 				IVcalc(0xD20A,0xD20B)
 				Statcalc(0xD167,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
 				Write(0xD212,0xD211,0xD1F1,0xD1F0,0xD214,0xD213,0xD216,0xD215,0xD218,0xD217,0xD21A,0xD219)
+				BattleHPWrite()
 			end
 		end
 		if Level[5] ~= nil then
@@ -1588,6 +1622,7 @@ while true do
 				IVcalc(0xD236,0xD237)
 				Statcalc(0xD168,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
 				Write(0xD23E,0xD23D,0xD21D,0xD21C,0xD240,0xD23F,0xD242,0xD241,0xD244,0xD243,0xD246,0xD245)
+				BattleHPWrite()
 			end
 		end
 		if Level[6] ~= nil then
@@ -1604,8 +1639,11 @@ while true do
 				IVcalc(0xD262,0xD263)
 				Statcalc(0xD169,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
 				Write(0xD26A,0xD269,0xD249,0xD248,0xD26C,0xD26B,0xD26E,0xD26D,0xD270,0xD26F,0xD272,0xD271)
+				BattleHPWrite()
 			end
 		end
-	checkHP()
+		
+		
+	
 	emu.frameadvance();
 end
