@@ -1389,6 +1389,15 @@ local function Randommoves(Move1,Move2,Move3,Move4,CurPP1,CurPP2,CurPP3,CurPP4)
 	memory.writebyte(Move2,math.random(1,164))
 	memory.writebyte(Move3,math.random(1,164))
 	memory.writebyte(Move4,math.random(1,164))
+	while memory.readbyte(Move1) == memory.readbyte(Move2) do
+		memory.writebyte(Move2,math.random(1,164))
+	end
+	while memory.readbyte(Move1) == memory.readbyte(Move3) or memory.readbyte(Move2) == memory.readbyte(Move3) do
+		memory.writebyte(Move3,math.random(1,164))
+	end
+	while memory.readbyte(Move1) == memory.readbyte(Move4) or memory.readbyte(Move2) == memory.readbyte(Move4) or memory.readbyte(Move3) == memory.readbyte(Move4) do
+		memory.writebyte(Move4,math.random(1,164))
+	end
 	memory.writebyte(CurPP1,PP[memory.readbyte(Move1)] * CurPP[1])
 	memory.writebyte(CurPP2,PP[memory.readbyte(Move2)] * CurPP[2])
 	memory.writebyte(CurPP3,PP[memory.readbyte(Move3)] * CurPP[3])
