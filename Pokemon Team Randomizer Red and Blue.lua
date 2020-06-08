@@ -1469,9 +1469,9 @@ math.randomseed(os.time())
 
 
 while true do
-	if memory.readbyte(0xCCD5) > 0 then
+	if memory.readbyte(0xD057) == 0 then
 		Randomize = true
-	elseif Randomize == true and memory.readbyte(0xCCD5) == 0 then
+	elseif Randomize == true and memory.readbyte(0xD057) > 0 then
 		print("Your Pokemon have been Randomized")
 		Randomize = false
 		if memory.readbyte(0xD164) > 0 and memory.readbyte(0xD164) < 255 then
