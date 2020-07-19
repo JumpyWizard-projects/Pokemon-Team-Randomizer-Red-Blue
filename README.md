@@ -1,6 +1,6 @@
 # Pokemon-Team-Randomizer-Red-Blue
 
-For more Information on my Projects visit http://jumpywizard.lima-city.de/
+For more Information on my Projects visit https://jumpywizard-projects.github.io/klopstock/pokemonpartyrandomizer.html
 
 This is a Pokemon Red and Blue Team Randomizer which Randomizes your Team before every battle.
 It keeps your old Pokemons Levels, IVs, EVs and HP and translates based on that stats for a new random Pokemon with new random moves.
