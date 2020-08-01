@@ -5,6 +5,7 @@ else
 	print("Your Rom seems Fine.")
 end
 
+local randomNumber = math.random
 local read = memory.readbyte
 local write = memory.writebyte
 local Level = {}
@@ -1373,46 +1374,29 @@ local function IVcalc(ADIV,SSIV)
 end
 
 
+local function Randommove(MoveAddress,CurPPAddress)
+  
+  local Move = read(MoveAddress)
+  
+  
+  if Move == 0 then
+    Move = randomNumber(1,164)
+    write(MoveAddress, Move)
+    write(CurPPAddress, PP[Move])
+  else
+    local CurPP = read(CurPPAddress) / PP[Move]
+    Move = randomNumber(1,164)
+    write(MoveAddress, Move)
+    write(CurPPAddress, CurPP * PP[Move])
+  end
+  
+end
 
-local function Randommoves(Move1,Move2,Move3,Move4,CurPP1,CurPP2,CurPP3,CurPP4)
-	if read(Move2) == 0 then
-		write(Move2,math.random(1,164))
-		write(CurPP2,PP[read(Move2)])
-	end
-	if read(Move3) == 0 then
-		write(Move3,math.random(1,164))
-		write(CurPP3,PP[read(Move3)])
-	end
-	if read(Move4) == 0 then
-		write(Move4,math.random(1,164))
-		write(CurPP4,PP[read(Move4)])
-	end
-	CurPP[1] = read(CurPP1) / PP[read(Move1)]
-	CurPP[2] = read(CurPP2) / PP[read(Move2)]
-	CurPP[3] = read(CurPP3) / PP[read(Move3)]
-	CurPP[4] = read(CurPP4) / PP[read(Move4)]
-	for i = 1,4 do
-		if CurPP[i] > 1 then
-			CurPP[i] = 1
-		end
-	end
-	write(Move1,math.random(1,164))
-	write(Move2,math.random(1,164))
-	write(Move3,math.random(1,164))
-	write(Move4,math.random(1,164))
-	while read(Move1) == read(Move2) do
-		write(Move2,math.random(1,164))
-	end
-	while read(Move1) == read(Move3) or read(Move2) == read(Move3) do
-		write(Move3,math.random(1,164))
-	end
-	while read(Move1) == read(Move4) or read(Move2) == read(Move4) or read(Move3) == read(Move4) do
-		write(Move4,math.random(1,164))
-	end
-	write(CurPP1,PP[read(Move1)] * CurPP[1])
-	write(CurPP2,PP[read(Move2)] * CurPP[2])
-	write(CurPP3,PP[read(Move3)] * CurPP[3])
-	write(CurPP4,PP[read(Move4)] * CurPP[4])
+local function Randommoves(Move1Address,Move2Address,Move3Address,Move4Address,CurPP1Address,CurPP2Address,CurPP3Address,CurPP4Address)
+  Randommove(Move1Address,CurPP1Address)
+  Randommove(Move2Address,CurPP2Address)
+  Randommove(Move3Address,CurPP3Address)
+  Randommove(Move4Address,CurPP4Address)
 end
 
 
@@ -1492,7 +1476,7 @@ while true do
 			Random(0xD164,0xD170,0xD171)
 			Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
 			Write(0xD18E,0xD18D,0xD16D,0xD16C,0xD190,0xD18F,0xD192,0xD191,0xD194,0xD193,0xD196,0xD195)
-			Randommoves(0xD173,0xD174,0xD175,0xD176,0xD188,0xD189,0xD18A,0xD18B)
+			Randommoves(0xD173,0xD174,0xD175,0xD176,0xD188,0xD189,0xD18A,0xD18B, i)
 		end
 		if read(0xD165) > 0 and read(0xD165) < 255 then
 			i = 2
@@ -1502,7 +1486,7 @@ while true do
 			IVcalc(0xD1B2,0xD1B3)
 			Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
 			Write(0xD1BA,0xD1B9,0xD199,0xD198,0xD1BC,0xD1BB,0xD1BE,0xD1BD,0xD1C0,0xD1BF,0xD1C2,0xD1C1)
-			Randommoves(0xD19F,0xD1A0,0xD1A1,0xD1A2,0xD1B4,0xD1B5,0xD1B6,0xD1B7)
+			Randommoves(0xD19F,0xD1A0,0xD1A1,0xD1A2,0xD1B4,0xD1B5,0xD1B6,0xD1B7,i)
 		end
 		if read(0xD166) > 0 and read(0xD166) < 255 then
 			i = 3
