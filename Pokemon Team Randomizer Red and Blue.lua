@@ -5,6 +5,7 @@ else
 	print("Your Rom seems Fine.")
 end
 
+local render = emu.frameadvance
 local randomNumber = math.random
 local read = memory.readbyte
 local write = memory.writebyte
@@ -12,7 +13,6 @@ local Level = {}
 local type1 = {}
 local type2 = {}
 local PP = {}
-local CurPP = {}
 local HPIV = {}
 local AIV = {}
 local DIV = {}
@@ -1265,7 +1265,7 @@ end
 
 local function Puffer()
 	for _ = 1,10 do
-		emu.frameadvance()
+		render()
 	end
 end
 
@@ -1471,7 +1471,7 @@ while true do
 		if read(0xD164) > 0 and read(0xD164) < 255 then
 			i = 1
 			CurHP[i] = (read(0xD16D) + read(0xD16C) * 255) / (read(0xD18E) + read(0xD18D) * 255)
-			CheckCurHP()
+			--CheckCurHP()
 			IVcalc(0xD186,0xD187)
 			Random(0xD164,0xD170,0xD171)
 			Statcalc(0xD164,0xD17D,0xD17C,0xD17F,0xD17E,0xD181,0xD182,0xD196,0xD195,0xD194,0xD193,0xD18C)
@@ -1481,7 +1481,7 @@ while true do
 		if read(0xD165) > 0 and read(0xD165) < 255 then
 			i = 2
 			CurHP[i] = (read(0xD199) + read(0xD198) * 255) / (read(0xD1BA) + read(0xD1B9) * 255)
-			CheckCurHP()
+			--CheckCurHP()
 			Random(0xD165,0xD19C,0xD19D)
 			IVcalc(0xD1B2,0xD1B3)
 			Statcalc(0xD165,0xD1A9,0xD1A8,0xD1AB,0xD1AA,0xD1AD,0xD1AC,0xD1C2,0xD1C1,0xD1C0,0xD1BF,0xD1B8)
@@ -1491,7 +1491,7 @@ while true do
 		if read(0xD166) > 0 and read(0xD166) < 255 then
 			i = 3
 			CurHP[i] = (read(0xD1C5) + read(0xD1C4) * 255) / (read(0xD1E6) + read(0xD1E5) * 255)
-			CheckCurHP()
+			--CheckCurHP()
 			Random(0xD166,0xD1C8,0xD1C9)
 			IVcalc(0xD1DE,0xD1DF)
 			Statcalc(0xD166,0xD1D5,0xD1D4,0xD1D7,0xD1D6,0xD1D9,0xD1D8,0xD1EE,0xD1ED,0xD1EC,0xD1EB,0xD1E4)
@@ -1501,7 +1501,7 @@ while true do
 		if read(0xD167) > 0 and read(0xD167) < 255 then
 			i = 4
 			CurHP[i] = (read(0xD1F1) + read(0xD1F0) * 255) / (read(0xD212) + read(0xD211) * 255)
-			CheckCurHP()
+			--CheckCurHP()
 			Random(0xD167,0xD1F4,0xD1F5)
 			IVcalc(0xD20A,0xD20B)
 			Statcalc(0xD167,0xD201,0xD200,0xD203,0xD202,0xD205,0xD204,0xD21A,0xD219,0xD218,0xD217,0xD210)
@@ -1511,7 +1511,7 @@ while true do
 		if read(0xD168) > 0 and read(0xD168) < 255 then
 			i = 5
 			CurHP[i] = (read(0xD21D) + read(0xD21C) * 255) / (read(0xD23E) + read(0xD23D) * 255)
-			CheckCurHP()
+			--CheckCurHP()
 			Random(0xD168,0xD220,0xD221)
 			IVcalc(0xD236,0xD237)
 			Statcalc(0xD168,0xD22D,0xD22C,0xD22F,0xD22E,0xD231,0xD230,0xD246,0xD245,0xD244,0xD243,0xD23C)
@@ -1521,7 +1521,7 @@ while true do
 		if read(0xD169) > 0 and read(0xD169) < 255 then
 			i = 6
 			CurHP[i] = (read(0xD249) + read(0xD248) * 255) / (read(0xD26A) + read(0xD269) * 255)
-			CheckCurHP()
+			--CheckCurHP()
 			Random(0xD169,0xD24C,0xD24D)
 			IVcalc(0xD262,0xD263)
 			Statcalc(0xD169,0xD259,0xD258,0xD25B,0xD25A,0xD25D,0xD25C,0xD272,0xD271,0xD270,0xD26F,0xD268)
@@ -1613,5 +1613,5 @@ while true do
 		
 		
 	
-	emu.frameadvance();
+	render();
 end
