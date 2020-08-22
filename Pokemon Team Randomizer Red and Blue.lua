@@ -1421,14 +1421,14 @@ local function Write(StatHP,StatHP255,StatCurHP,StatCurHP255,StatA,StatA255,Stat
 		write(StatD,D[i] - read(StatD255) * 255)
 	else
 		write(StatD,D[i])
-    write(StatS255,0)
+		write(StatD255,0)
 	end
 	if SPEED[i] > 255 then
 		write(StatSPEED255,math.floor(SPEED[i] / 255))
 		write(StatSPEED,SPEED[i] - read(StatSPEED255) * 255)
 	else 
 		write(StatSPEED,SPEED[i])
-    write(StatSPEED255,0)
+		write(StatSPEED255,0)
 	end
 	if SPECIAL[i] > 255 then
 		write(StatSPECIAL255,math.floor(SPECIAL[i] / 255))
