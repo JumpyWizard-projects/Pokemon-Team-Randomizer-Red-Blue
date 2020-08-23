@@ -1,7 +1,10 @@
 <?php
+
 include 'simple_html_dom.php';
 $html = file_get_html('https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_base_stats_(Generation_I)');
 $html2 = file_get_html('https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_index_number_(Generation_I)');
+
+$txt = '';
 
 foreach($html2->find('tr') as $tr){
     $i = 1;
@@ -38,23 +41,23 @@ foreach ($html->find('tr') as $tr) {
                 }
                 break;
             case 4:
-                file_put_contents('lua.txt', 'HPBase[' . $j . '] =' . strip_tags($td) . PHP_EOL, FILE_APPEND);
+                $txt .= 'HPBase[' . $j . '] =' . strip_tags($td) . PHP_EOL;
                 break;
         
             case 5;
-                file_put_contents('lua.txt', 'ABase[' . $j . '] =' . strip_tags($td) . PHP_EOL, FILE_APPEND);
+                $txt .= 'ABase[' . $j . '] =' . strip_tags($td) . PHP_EOL;
                 break;
         
             case 6;
-                file_put_contents('lua.txt', 'DBase[' . $j . '] =' . strip_tags($td) . PHP_EOL, FILE_APPEND);
+                $txt .= 'DBase[' . $j . '] =' . strip_tags($td) . PHP_EOL;
                 break;
         
             case 7;
-                file_put_contents('lua.txt', 'SpeedBase[' . $j . '] =' . strip_tags($td) . PHP_EOL, FILE_APPEND);
+                $txt .= 'SpeedBase[' . $j . '] =' . strip_tags($td) . PHP_EOL;
                 break;
         
             case 8;
-                file_put_contents('lua.txt', 'SpecialBase[' . $j . '] =' . strip_tags($td) . PHP_EOL, FILE_APPEND);
+                $txt .= 'SpecialBase[' . $j . '] =' . strip_tags($td) . PHP_EOL;
                 break;
             
             default:
@@ -62,3 +65,4 @@ foreach ($html->find('tr') as $tr) {
         $i++;
     }
 }
+file_put_contents('lua.txt', $txt);
